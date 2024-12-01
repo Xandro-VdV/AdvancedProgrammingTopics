@@ -3,7 +3,7 @@ name: Build and deliver containers
 on:
   push:
     branches:
-      - main  # Adjust to your branch name
+      - main  
 
 jobs:
   deviceservice:
