@@ -1,0 +1,70 @@
+services:
+  mongo-messages:
+    image: mongo:latest
+    container_name: mongo-messages
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo_message_data:/data/db
+
+  mysql-devices:
+    image: mysql:latest
+    container_name: mysql-devices
+    ports:
+      - "3307:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: abc123
+    volumes:
+      - mysql_device_data:/var/lib/mysql
+
+  mysql-houses:
+    image: mysql:latest
+    container_name: mysql-houses
+    ports:
+      - "3308:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: abc123
+    volumes:
+      - mysql_house_data:/var/lib/mysql
+
+  deviceservice:
+    image: $${{ secrets.DOCKER_NAME }}/device-service:latest
+    container_name: device-service
+    ports:
+      - "8080:8080"
+    depends_on:
+      - mysql-devices
+    environment:
+      MYSQL_DB_USERNAME: root
+      MYSQL_DB_PASSWORD: abc123
+      MYSQL_DB_HOST: mysql-devices
+      MYSQL_DB_PORT: 3306
+
+  houseservice:
+    image: $${{ secrets.DOCKER_NAME }}/house-service:latest
+    container_name: house-service
+    ports:
+      - "8081:8081"
+    depends_on:
+      - mysql-houses
+    environment:
+      MYSQL_DB_USERNAME: root
+      MYSQL_DB_PASSWORD: abc123
+      MYSQL_DB_HOST: mysql-houses
+      MYSQL_DB_PORT: 3306
+
+  messageservice:
+    image: $${{ secrets.DOCKER_NAME }}/message-service:latest
+    container_name: message-service
+    ports:
+      - "8082:8082"
+    depends_on:
+      - mongo-messages
+    environment:
+      MONGO_DB_HOST: mongo-messages
+      MONGO_DB_PORT: 27017
+
+volumes:
+  mongo_message_data:
+  mysql_device_data:
+  mysql_house_data:
