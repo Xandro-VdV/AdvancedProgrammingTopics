@@ -66,20 +66,21 @@ services:
 
   api-gateway:
     image: xandro1/api-gateway
+    container_name: api-gateway
     ports:
-      - 8083:8083
+      - "8083:8083"
     depends_on:
-      - device-service
-      - house-service
-      - message-service
+      - deviceservice
+      - houseservice
+      - messageservice
     links:
-      - device-service
-      - house-service
-      - message-service
+      - deviceservice
+      - houseservice
+      - messageservice
     environment:
-      DEVICE_SERVICE_BASEURL: device-service:8082
-      HOUSE_SERVICE_BASEURL: house-service:8081
-      MESSAGE_SERVICE_BASEURL: message-service:8080
+      DEVICE_SERVICE_BASEURL: deviceservice:8082
+      HOUSE_SERVICE_BASEURL: houseservice:8081
+      MESSAGE_SERVICE_BASEURL: messageservice:8080
 
 volumes:
   mongo_message_data:
