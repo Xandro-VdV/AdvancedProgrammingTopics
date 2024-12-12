@@ -1,0 +1,69 @@
+server:
+  port: 8083
+
+logging:
+  level:
+    root: INFO
+    org.springframework.cloud.gateway: TRACE
+    org.springframework.cloud.gateway.route.RouteDefinitionRouteLocator: INFO
+    reactor.netty: TRACE
+
+spring:
+  cloud:
+    gateway:
+      routes:
+        - id: device-service-get
+          uri: http://${DEVICE_SERVICE_BASEURL:localhost:8082}
+          predicates:
+            - Path=/api/device
+            - Method=GET
+          filters:
+            - SetPath=/api/device/all
+
+        - id: house-service-get
+          uri: http://${HOUSE_SERVICE_BASEURL:localhost:8081}
+          predicates:
+            - Path=/api/house
+            - Method=GET
+          filters:
+            - SetPath=/api/house/all
+
+        - id: message-service-get
+          uri: http://${MESSAGE_SERVICE_BASEURL:localhost:8080}
+          predicates:
+            - Path=/api/message
+            - Method=GET
+          filters:
+            - SetPath=/api/message/all
+
+        - id: message-service-post
+          uri: http://${MESSAGE_SERVICE_BASEURL:localhost:8080}
+          predicates:
+            - Path=/api/message
+            - Method=POST
+          filters:
+            - SetPath=/api/message
+
+        - id: device-service-post
+          uri: http://${DEVICE_SERVICE_BASEURL:localhost:8082}
+          predicates:
+            - Path=/api/device
+            - Method=POST
+          filters:
+            - SetPath=/api/device
+
+        - id: device-service-put
+          uri: http://${DEVICE_SERVICE_BASEURL:localhost:8082}
+          predicates:
+            - Path=/api/device/{id}
+            - Method=PUT
+          filters:
+            - SetPath=/api/device/{id}
+
+        - id: device-service-delete
+          uri: http://${DEVICE_SERVICE_BASEURL:localhost:8082}
+          predicates:
+            - Path=/api/device/{id}
+            - Method=DELETE
+          filters:
+            - SetPath=/api/device/{id}
