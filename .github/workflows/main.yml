@@ -113,8 +113,8 @@ jobs:
 
       - name: Docker build
         working-directory: ./api-gateway 
-        run: docker build -t ${{ secrets.DOCKER_NAME }}/api-gateway:latest .
+        run: docker build -t ${{ secrets.DOCKER_NAME }}/api-gateway .
 
       - name: Upload container to Docker Hub with Push
-        run: docker push ${{ secrets.DOCKER_NAME }}/api-gateway:latest
+        run: docker push ${{ secrets.DOCKER_NAME }}/api-gateway
 
