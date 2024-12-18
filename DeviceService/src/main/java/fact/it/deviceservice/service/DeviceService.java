@@ -49,6 +49,7 @@ private final DeviceRepository deviceRepository;
         Device existingDevice = deviceRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Device not found"));
 
+        existingDevice.setHouseId(updatedDevice.getHouseId());
         existingDevice.setName(updatedDevice.getName());
         existingDevice.setBrand(updatedDevice.getBrand());
         existingDevice.setModel(updatedDevice.getModel());
