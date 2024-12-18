@@ -15,7 +15,7 @@ spring:
         - id: device-service-get
           uri: http://${DEVICE_SERVICE_BASEURL:localhost:8082}
           predicates:
-            - Path=/devices
+            - Path=/api/device
             - Method=GET
           filters:
             - SetPath=/api/device/all
