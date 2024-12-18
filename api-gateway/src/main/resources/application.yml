@@ -12,45 +12,14 @@ spring:
   cloud:
     gateway:
       routes:
-        # Device Service Routes
-
-        # GET /api/device/all should go to device-service at /api/device/all
-        - id: device-service-get-all
+        - id: device-service-get
           uri: http://${DEVICE_SERVICE_BASEURL:localhost:8082}
           predicates:
-            - Path=/api/device/all
+            - Path=/devices
             - Method=GET
-
-        # POST /api/device should go to device-service at /api/device
-        - id: device-service-post
-          uri: http://${DEVICE_SERVICE_BASEURL:localhost:8082}
-          predicates:
-            - Path=/api/device
-            - Method=POST
           filters:
-            - SetPath=/api/device  # Forward as is
+            - SetPath=/api/device/all
 
-        # PUT /api/device/{id} should go to device-service at /api/device/{id}
-        - id: device-service-put
-          uri: http://${DEVICE_SERVICE_BASEURL:localhost:8082}
-          predicates:
-            - Path=/api/device/{id}
-            - Method=PUT
-          filters:
-            - SetPath=/api/device/{id}
-
-        # DELETE /api/device/{id} should go to device-service at /api/device/{id}
-        - id: device-service-delete
-          uri: http://${DEVICE_SERVICE_BASEURL:localhost:8082}
-          predicates:
-            - Path=/api/device/{id}
-            - Method=DELETE
-          filters:
-            - SetPath=/api/device/{id}
-
-        # House Service Routes
-
-        # GET /api/house should go to house-service at /api/house/all
         - id: house-service-get
           uri: http://${HOUSE_SERVICE_BASEURL:localhost:8081}
           predicates:
@@ -59,9 +28,6 @@ spring:
           filters:
             - SetPath=/api/house/all
 
-        # Message Service Routes
-
-        # GET /api/message should go to message-service at /api/message/all
         - id: message-service-get
           uri: http://${MESSAGE_SERVICE_BASEURL:localhost:8080}
           predicates:
@@ -70,7 +36,6 @@ spring:
           filters:
             - SetPath=/api/message/all
 
-        # POST /api/message should go to message-service at /api/message
         - id: message-service-post
           uri: http://${MESSAGE_SERVICE_BASEURL:localhost:8080}
           predicates:
@@ -78,3 +43,27 @@ spring:
             - Method=POST
           filters:
             - SetPath=/api/message
+
+        - id: device-service-post
+          uri: http://${DEVICE_SERVICE_BASEURL:localhost:8082}
+          predicates:
+            - Path=/api/device
+            - Method=POST
+          filters:
+            - SetPath=/api/device
+
+        - id: device-service-put
+          uri: http://${DEVICE_SERVICE_BASEURL:localhost:8082}
+          predicates:
+            - Path=/api/device/{id}
+            - Method=PUT
+          filters:
+            - SetPath=/api/device/{id}
+
+        - id: device-service-delete
+          uri: http://${DEVICE_SERVICE_BASEURL:localhost:8082}
+          predicates:
+            - Path=/api/device/{id}
+            - Method=DELETE
+          filters:
+            - SetPath=/api/device/{id}
