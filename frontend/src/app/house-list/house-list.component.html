@@ -1,0 +1,8 @@
+<div class="flex justify-center">
+    <div class="flex flex-wrap justify-center gap-6">
+      @for (house of this.houseList; track house.id) {
+        <app-house [house]="house"></app-house>
+      } 
+    </div>
+  </div>
+  
