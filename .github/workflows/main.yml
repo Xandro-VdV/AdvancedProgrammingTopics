@@ -22,7 +22,7 @@ jobs:
 
       - name: Build, test, and package
         working-directory: ./DeviceService
-        run: mvn clean package -DskipTests
+        run: mvn clean package
 
       - name: Docker login
         run: echo "${{ secrets.DOCKER_PASSWORD }}" | docker login -u "${{ secrets.DOCKER_USERNAME }}" --password-stdin
@@ -50,7 +50,7 @@ jobs:
 
       - name: Build, test, and package
         working-directory: ./HouseService
-        run: mvn clean package -DskipTests
+        run: mvn clean package
 
       - name: Docker login
         run: echo "${{ secrets.DOCKER_PASSWORD }}" | docker login -u "${{ secrets.DOCKER_USERNAME }}" --password-stdin
@@ -78,7 +78,7 @@ jobs:
 
       - name: Build, test, and package
         working-directory: ./MessageService
-        run: mvn clean package -DskipTests
+        run: mvn clean package
 
       - name: Docker login
         run: echo "${{ secrets.DOCKER_PASSWORD }}" | docker login -u "${{ secrets.DOCKER_USERNAME }}" --password-stdin
@@ -104,17 +104,16 @@ jobs:
           distribution: 'temurin'
           cache: 'maven'
 
-      - name: Build, test and package project
-        working-directory: ./api-gateway 
-        run: mvn clean package -DskipTests
+      - name: Build, test, and package
+        working-directory: ./api-gateway
+        run: mvn clean package
 
       - name: Docker login
         run: echo "${{ secrets.DOCKER_PASSWORD }}" | docker login -u "${{ secrets.DOCKER_USERNAME }}" --password-stdin
 
       - name: Docker build
-        working-directory: ./api-gateway 
+        working-directory: ./api-gateway
         run: docker build -t ${{ secrets.DOCKER_NAME }}/api-gateway:latest .
 
-      - name: Upload container to Docker Hub with Push
+      - name: Docker push
         run: docker push ${{ secrets.DOCKER_NAME }}/api-gateway:latest
-
