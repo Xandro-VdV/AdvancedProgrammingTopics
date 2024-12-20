@@ -7,3 +7,12 @@ export interface Device {
     status: string;
     active: boolean;
 }
+
+export interface DevicePost {
+    houseId: string;
+    name: string;
+    brand: string;
+    model: string;
+    status: string;
+    active: boolean;
+}

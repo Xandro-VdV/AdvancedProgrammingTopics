@@ -12,7 +12,7 @@ import { HouseService } from '../house.service';
   styleUrls: ['./house-list.component.css'],
   imports: [HouseComponent],  
 })
-export class HouseListComponent implements OnInit {
+export class  HouseListComponent implements OnInit {
   houseList!: House[];
   houseList$!: Observable<House[]>;
 

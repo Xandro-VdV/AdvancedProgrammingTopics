@@ -1,0 +1,73 @@
+@if(isSubmitted && errorMessage) {
+    <div class="rounded p-4 mb-4 text-lg bg-red-200 text-red-800 border-2 border-red-300">
+        {{errorMessage}}
+    </div>
+}
+
+<form (ngSubmit)="onSubmit()" #deviceForm="ngForm">
+    <!-- Bearer Token Field -->
+    <div class="mb-6">
+        <label for="bearerToken" class="block mb-2 text-sm font-medium text-gray-900">Bearer Token</label>
+        <input type="text" id="bearerToken" name="bearerToken"
+            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+            placeholder="Bearer Token" required [(ngModel)]="bearerToken" #bearerTokenField="ngModel">
+        <div [hidden]="bearerTokenField.valid || bearerTokenField.pristine" class="text-red-500 mt-2">Bearer Token is required</div>
+    </div>
+
+    <!-- Name Field -->
+    <div class="mb-6">
+        <label for="name" class="block mb-2 text-sm font-medium text-gray-900">Name</label>
+        <input type="text" id="name" name="name"
+            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+            placeholder="Name" required [(ngModel)]="device.name" #name="ngModel">
+        <div [hidden]="name.valid || name.pristine" class="text-red-500 mt-2">Name is required</div>
+    </div>
+
+    <!-- House ID Field -->
+    <div class="mb-6">
+        <label for="houseId" class="block mb-2 text-sm font-medium text-gray-900">House ID</label>
+        <input type="text" id="houseId" name="houseId"
+            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+            placeholder="House ID" required [(ngModel)]="device.houseId" #houseId="ngModel">
+        <div [hidden]="houseId.valid || houseId.pristine" class="text-red-500 mt-2">House ID is required</div>
+    </div>
+
+    <!-- Brand Field -->
+    <div class="mb-6">
+        <label for="brand" class="block mb-2 text-sm font-medium text-gray-900">Brand</label>
+        <input type="text" id="brand" name="brand"
+            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+            placeholder="Brand" required [(ngModel)]="device.brand" #brand="ngModel">
+        <div [hidden]="brand.valid || brand.pristine" class="text-red-500 mt-2">Brand is required</div>
+    </div>
+
+    <!-- Model Field -->
+    <div class="mb-6">
+        <label for="model" class="block mb-2 text-sm font-medium text-gray-900">Model</label>
+        <input type="text" id="model" name="model"
+            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+            placeholder="Model" required [(ngModel)]="device.model" #model="ngModel">
+        <div [hidden]="model.valid || model.pristine" class="text-red-500 mt-2">Model is required</div>
+    </div>
+
+    <!-- Status Field -->
+    <div class="mb-6">
+        <label for="status" class="block mb-2 text-sm font-medium text-gray-900">Status</label>
+        <input type="text" id="status" name="status"
+            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+            placeholder="Status" required [(ngModel)]="device.status" #status="ngModel">
+        <div [hidden]="status.valid || status.pristine" class="text-red-500 mt-2">Status is required</div>
+    </div>
+
+    <!-- Active Field -->
+    <div class="mb-6">
+        <label for="active" class="block mb-2 text-sm font-medium text-gray-900">Active</label>
+        <input type="checkbox" id="active" name="active"
+            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500"
+            [(ngModel)]="device.active" #active="ngModel">
+    </div>
+
+    <!-- Submit Button -->
+    <button type="submit" [disabled]="!deviceForm.form.valid || isSubmitted"
+        class="text-white bg-blue-700 enabled:hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center disabled:opacity-75">Add</button>
+</form>

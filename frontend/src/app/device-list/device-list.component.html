@@ -1,0 +1,11 @@
+<div class="flex justify-center">
+    <div class="flex flex-wrap justify-center gap-6">
+      @for (device of this.deviceList; track device.id) {
+        <app-device [device]="device"></app-device>
+      } 
+    </div>
+  </div>
+  <a [routerLink]="'/device/add'" routerLinkActive="active" class="shadow-lg p-6 rounded-lg flex items-center bg-white hover:bg-lime-50 transition py-20">
+    <p class="m-0 ms-4 text-2xl font-semibold">Device toevoegen</p>
+    </a>
+  
