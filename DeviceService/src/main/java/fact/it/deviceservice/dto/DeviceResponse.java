@@ -5,8 +5,6 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.time.LocalDateTime;
-
 @Data
 @Builder
 @AllArgsConstructor
@@ -19,5 +17,4 @@ public class DeviceResponse {
     private String model;
     private String status;
     private boolean active;
-
 }

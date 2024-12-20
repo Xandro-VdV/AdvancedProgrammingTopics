@@ -16,17 +16,18 @@ public class HouseService {
 private final HouseRepository houseRepository;
 
     @Transactional(readOnly = true)
-public List<HouseResponse> getAllHouses() {
-        return houseRepository.findAll().stream().map(house ->
-                HouseResponse.builder()
-                        .id(house.getId())
-                        .address(house.getAddress())
-                        .city(house.getCity())
-                        .postalCode(house.getPostalCode())
-                        .numberOfRooms(house.getNumberOfRooms())
-                        .ownerName(house.getOwnerName())
-                        .constructionYear(house.getConstructionYear())
-                        .build()
+    public List<HouseResponse> getAllHouses() {
+        return houseRepository.findAll().stream()
+                .map(house ->
+                    HouseResponse.builder()
+                            .id(house.getId())
+                            .address(house.getAddress())
+                            .city(house.getCity())
+                            .postalCode(house.getPostalCode())
+                            .numberOfRooms(house.getNumberOfRooms())
+                            .ownerName(house.getOwnerName())
+                            .constructionYear(house.getConstructionYear())
+                            .build()
         ).toList();
     }
 

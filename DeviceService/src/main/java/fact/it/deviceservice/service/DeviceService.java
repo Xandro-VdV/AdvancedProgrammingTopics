@@ -32,7 +32,7 @@ private final DeviceRepository deviceRepository;
 
     @Transactional
     public DeviceResponse addDevice(Device device) {
-        Device savedDevice = deviceRepository.save(device);
+                Device savedDevice = deviceRepository.save(device);
         return DeviceResponse.builder()
                 .id(savedDevice.getId())
                 .houseId(savedDevice.getHouseId())

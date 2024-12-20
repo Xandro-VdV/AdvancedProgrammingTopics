@@ -21,9 +21,8 @@ public class DeviceController {
         return deviceService.getAllDevices();
     }
 
-    //purely for putting in testing data ;)
     @PostMapping
-    public ResponseEntity<DeviceResponse> addActivity(@RequestBody Device device) {
+    public ResponseEntity<DeviceResponse> addDevice(@RequestBody Device device) {
         DeviceResponse createdDevice = deviceService.addDevice(device);
         return ResponseEntity.status(201).body(createdDevice);    }
 
