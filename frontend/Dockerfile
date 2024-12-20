@@ -14,16 +14,19 @@ RUN npm install
 COPY . .
 
 # Build the Angular project for production
-RUN npm run build --prod
+RUN npm run build
 
 # Step 2: Serve the app using an HTTP server
 FROM nginx:alpine
+
+# Copy a custom Nginx configuration for SPA routing
+COPY nginx.conf /etc/nginx/conf.d/default.conf
 
 # Copy the build output to the Nginx html directory
 COPY --from=build /app/dist/frontend /usr/share/nginx/html
 
 # Expose port 80 for the Nginx server
-EXPOSE 4200
+EXPOSE 80
 
 # Start the Nginx server
 CMD ["nginx", "-g", "daemon off;"]
