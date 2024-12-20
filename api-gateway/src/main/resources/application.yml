@@ -65,14 +65,6 @@ spring:
           filters:
             - SetPath=/api/device
 
-        - id: house-service-post
-          uri: http://${HOUSE_SERVICE_BASEURL:localhost:8081}
-          predicates:
-            - Path:/api/house
-            - Method=POST
-          filters:
-            - SetPath=/api/house
-
         - id: device-service-put
           uri: http://${DEVICE_SERVICE_BASEURL:localhost:8082}
           predicates:
