@@ -82,6 +82,16 @@ services:
       HOUSE_SERVICE_BASEURL: houseservice:8081
       MESSAGE_SERVICE_BASEURL: messageservice:8080
 
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    ports:
+      - 4200:4200
+    depends_on:
+      - api-gateway
+
+
 volumes:
   mongo_message_data:
   mysql_device_data:
