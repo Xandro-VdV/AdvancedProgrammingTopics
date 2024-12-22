@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
+import { empty, Observable } from 'rxjs';
 import { MessageComponent } from '../message/message.component';
 import { Message, MessagePost } from '../message';
 import { MessageService } from '../message.service';
@@ -19,7 +19,7 @@ export class  MessageListComponent implements OnInit {
     deviceId: 0, 
     header: '', 
     message: '', 
-    sentAt: new Date()
+    sentAt: new Date("2021-01-01T00:00:00Z")
   };
 
   bearerToken: string = '';
@@ -40,6 +40,10 @@ export class  MessageListComponent implements OnInit {
 
   onSubmit() {
     this.isSubmitted = true;
+    console.log("-------------------")
+    console.log(this.message);
+    console.log(this.bearerToken);
+    console.log("-------------------");
 
     if (this.message.deviceId && this.message.header && this.message.message && this.message.sentAt) {
       if (this.bearerToken.trim() === '') {
