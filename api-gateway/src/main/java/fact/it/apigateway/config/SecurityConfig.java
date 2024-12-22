@@ -22,8 +22,8 @@ public class SecurityConfig {
         serverHttpSecurity
                 .cors(cors -> cors.configurationSource(corsConfigurationSource())) // Add CORS configuration
                 .authorizeExchange(exchange -> exchange
-                .pathMatchers(HttpMethod.GET, "/api/device", "/api/house", "api/message").permitAll()
-                .anyExchange().authenticated()
+                        .pathMatchers(HttpMethod.GET, "/api/device", "/api/house", "api/message").permitAll()
+                        .anyExchange().authenticated()
                 )
                 .oauth2ResourceServer(oauth2 -> oauth2
                         .jwt(withDefaults())
