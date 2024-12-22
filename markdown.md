@@ -111,7 +111,7 @@ The frontend provides a user-friendly interface for:
 ![NoAuth](/md-images/unauth.png)
 
 
-- **Demo Video**: A video describing the structure, working, and frontend interaction is available [here](https://youtu.be/2p0frs4XLMg).
+- **Demo Video**: A video describing the structure, working, and frontend interaction is available [here](https://youtu.be/S-al4W3wnQ8).
 
 ---
 
