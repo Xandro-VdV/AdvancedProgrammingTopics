@@ -15,7 +15,7 @@ export class MessageService {
   private getHeaders(token: string): HttpHeaders {
     return new HttpHeaders({
       'Authorization': `Bearer ${token}`,
-      'Content-Type': 'application/json',  // Specify content type as JSON
+      'Content-Type': 'application/json', 
     });
   }
   getMessages() : Observable<Message[]> {
