@@ -41,7 +41,6 @@ export class  MessageListComponent implements OnInit {
   onSubmit() {
     this.isSubmitted = true;
 
-    // Validation: Ensure all required fields are filled out
     if (this.message.deviceId && this.message.header && this.message.message && this.message.sentAt) {
       if (this.bearerToken.trim() === '') {
         this.errorMessage = 'Please provide the Bearer Token.';
@@ -51,12 +50,11 @@ export class  MessageListComponent implements OnInit {
       // Call the device service to add the device, passing the bearer token
       this.messageService.sendMessage(this.message, this.bearerToken).subscribe({
         next: (v) => {
-          this.router.navigateByUrl("/devices");  // Redirect to the device list or another page
+          this.router.navigateByUrl("/messages");  // Redirect to the device list or another page
         },
         error: (e) => this.errorMessage = e.message
       });
     } else {
-      // If any required field is missing, show an error message
       this.errorMessage = 'Please fill in all required fields.';
     }
   }
