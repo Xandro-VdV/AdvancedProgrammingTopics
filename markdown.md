@@ -15,12 +15,16 @@ The primary goal is to demonstrate a robust and scalable architecture using mode
 3. **Message Service**: Facilitates the creation, storage, and retrieval of messages related to devices or houses.
 
 ### API Gateway
-All services interact through an API Gateway configured with **Spring Cloud Gateway**. The gateway provides a unified entry point for clients, handling authentication, routing, and rate-limiting.
+All services interact through an API Gateway configured with **Spring Cloud Gateway**. The gateway provides a unified entry point for clients, handling authentication and routing.
 
 - **Port**: 8083
 - **Security**: GCP OAuth2 for user authentication, with JWT verification for access control.
 
 ---
+
+## Schema
+
+![Schema](/md-images/schema.png)
 
 ## Technical Stack
 
@@ -41,7 +45,6 @@ All services interact through an API Gateway configured with **Spring Cloud Gate
 | Method | Path          | Description                  |
 |--------|---------------|------------------------------|
 | GET    | /house       | Retrieve all houses.         |
-| POST   | /house       | Create a new house.          |
 
 ### Device Service
 | Method | Path            | Description                     |
@@ -83,11 +86,31 @@ The frontend provides a user-friendly interface for:
 1. **Docker Containers**: Each service is packaged as a Docker container.
 2. **Docker Compose**: Simplifies multi-service deployment.
 3. **GitHub Actions**: Automates CI/CD processes, including building and testing services.
+![Schema](/md-images/schema.png)
+
 
 ---
 
 ## Screenshots and Demonstration
-- **Postman Screenshots**: All API endpoints have been tested and verified. Screenshots are available in the GitHub repository.
+- **Postman Screenshots**: All API endpoints have been tested and verified. Screenshots are available below.
+`GET - message:`
+![GetMessage](/md-images/message-get.png)
+`GET - device:`
+![GetDevice](/md-images/device-get.png)
+`GET - house:`
+![GetHouse](/md-images/house-get.png)
+`POST - device:`
+![PostDevice](/md-images/device-post.png)
+`POST - message:`
+![PostMessage](/md-images/message-post.png)
+`PUT - device:`
+![PutDevice](/md-images/device-put.png)
+`DELETE - device:`
+![DeleteDevice](/md-images/device-delete.png)
+`DELETE - device (without bearer token):`
+![NoAuth](/md-images/unauth.png)
+
+
 - **Demo Video**: A video describing the structure, working, and frontend interaction is available [here](#).
 
 ---
@@ -103,7 +126,7 @@ This project has deepened my understanding of:
 ---
 
 ## Repository
-The complete project code is available on GitHub: [GitHub Repository](#).
+The complete project code is available on GitHub: [AdvancedProgrammingTopics](https://github.com/Xandro-VdV/AdvancedProgrammingTopics) .
 
 ---
 
