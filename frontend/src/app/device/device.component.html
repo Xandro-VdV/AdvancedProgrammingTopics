@@ -5,5 +5,6 @@
         <p>Model: <span class="highlight">{{device.model}}</span></p>
         <p>Status: <span class="highlight">{{device.status}}</span></p>
         <p>Active: <span class="highlight">{{device.active ? 'Yes' : 'No'}}</span></p>
+        <button (click)="deleteDevice(device.id)" class="delete-button">Delete</button>
     </div>
 }

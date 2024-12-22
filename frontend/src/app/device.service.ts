@@ -35,7 +35,7 @@ export class DeviceService {
   }
   
 
-  deleteDevice(id: string) : Observable<Device> {
+  deleteDevice(id: number) : Observable<Device> {
     return this.http.delete<Device>(this.apiUrl + '/' + id);
   }
 }
