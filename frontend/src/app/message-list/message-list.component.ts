@@ -40,10 +40,6 @@ export class  MessageListComponent implements OnInit {
 
   onSubmit() {
     this.isSubmitted = true;
-    console.log("-------------------")
-    console.log(this.message);
-    console.log(this.bearerToken);
-    console.log("-------------------");
 
     if (this.message.deviceId && this.message.header && this.message.message && this.message.sentAt) {
       if (this.bearerToken.trim() === '') {
@@ -54,7 +50,7 @@ export class  MessageListComponent implements OnInit {
       // Call the device service to add the device, passing the bearer token
       this.messageService.sendMessage(this.message, this.bearerToken).subscribe({
         next: (v) => {
-          this.router.navigateByUrl("/messages");  // Redirect to the device list or another page
+          this.router.navigateByUrl("/");  // Redirect to the device list or another page
         },
         error: (e) => this.errorMessage = e.message
       });
