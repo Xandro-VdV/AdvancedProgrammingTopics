@@ -12,14 +12,8 @@ import { DeviceService } from '../device.service'; // Import the DeviceService
 export class DeviceComponent {
   @Input() device!: Device;
 
-  constructor(private deviceService: DeviceService) { } // Inject the DeviceService
+  constructor(private deviceService: DeviceService) { }
 
   ngOnInit(): void {
-  }
-
-  deleteDevice(id: number): void {
-    this.deviceService.deleteDevice(id).subscribe(() => {
-      console.log(`Device with id ${id} deleted`);
-    });
   }
 }

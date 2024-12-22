@@ -23,8 +23,6 @@ public class SecurityConfig {
                 .cors(cors -> cors.configurationSource(corsConfigurationSource())) // Add CORS configuration
                 .authorizeExchange(exchange -> exchange
                 .pathMatchers(HttpMethod.GET, "/api/device", "/api/house", "api/message").permitAll()
-                .pathMatchers(HttpMethod.PUT, "/api/device").permitAll() // Allow DELETE request to /api/device
-                .pathMatchers(HttpMethod.DELETE, "/api/device").permitAll() // Allow DELETE request to /api/device
                 .anyExchange().authenticated()
                 )
                 .oauth2ResourceServer(oauth2 -> oauth2
