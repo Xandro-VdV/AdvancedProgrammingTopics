@@ -1,19 +1,9 @@
 <div class="justify-center">
-    <table class="table-auto w-full max-w-4xl">
-        <thead>
-            <tr class="bg-gray-200">
-                <th class="px-4 py-2">Column 1</th>
-                <th class="px-4 py-2">Column 2</th>
-                <th class="px-4 py-2">Column 3</th>
-                <th class="px-4 py-2">Column 4</th>
-            </tr>
-        </thead>
-        <tbody>
-            @for (message of this.messageList; track message.id) {
-                <app-message [message]="message"></app-message>
-            }
-        </tbody>
-    </table>    
+    <div class="w-full max-w-4xl">
+        @for (message of this.messageList; track message.id) {
+        <app-message [message]="message"></app-message>
+        }
+    </div>
     <div class="w-full max-w-4xl mt-8 bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
         @if(isSubmitted && errorMessage) {
             <div class="rounded p-4 mb-4 text-lg bg-red-200 text-red-800 border-2 border-red-300">

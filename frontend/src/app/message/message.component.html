@@ -1,11 +1,12 @@
 @if(message) {
-    <tr class="bg-white border-b">
-        <td>{{ message.id }}</td>
-        <td>{{ message.header }}</td>
-        <td>{{ message.message }}</td>
-        <td>{{ message.sentAt }}</td>
-    </tr>
-    
+    <div class="card bg-light border-primary mb-3 shadow-sm">
+        <div class="card-header bg-primary text-white">
+            {{ message.header }}
+        </div>
+        <div class="card-body">
+            <h5 class="card-title">ID: {{ message.id }}</h5>
+            <p class="card-text">{{ message.message }}</p>
+            <p class="card-text"><small class="text-muted">Sent at: {{ message.sentAt }}</small></p>
+        </div>
+    </div>
 }
-
-    
