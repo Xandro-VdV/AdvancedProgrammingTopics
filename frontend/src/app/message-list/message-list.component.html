@@ -10,9 +10,7 @@
         </thead>
         <tbody>
             @for (message of this.messageList; track message.id) {
-            <tr class="bg-white border-b">
                 <app-message [message]="message"></app-message>
-            </tr>
             }
         </tbody>
     </table>
