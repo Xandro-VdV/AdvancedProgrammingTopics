@@ -91,7 +91,6 @@ services:
     depends_on:
       - api-gateway
 
-
 volumes:
   mongo_message_data:
   mysql_device_data:
