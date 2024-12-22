@@ -1,31 +1,31 @@
 # Step 1: Build the Angular app using Node.js
 FROM node:18 AS build
 
-# Set the working directory
+# Set the working directory for your app
 WORKDIR /app
 
 # Copy package.json and package-lock.json
 COPY package*.json ./
 
-# Install the dependencies
+# Install dependencies
 RUN npm install
 
-# Copy the rest of your application files
+# Copy the rest of the application files
 COPY . .
 
 # Build the Angular project for production
-RUN npm run build
+RUN npm run build --prod
 
-# Step 2: Serve the app using an HTTP server
+# Step 2: Serve the app using Nginx
 FROM nginx:alpine
 
-# Copy a custom Nginx configuration for SPA routing
+# Copy the custom Nginx configuration file
 COPY nginx.conf /etc/nginx/conf.d/default.conf
 
-# Copy the build output to the Nginx html directory
+# Copy the built Angular app from the build stage to the Nginx html directory
 COPY --from=build /app/dist/frontend /usr/share/nginx/html
 
-# Expose port 80 for the Nginx server
+# Expose port 80 (default HTTP port)
 EXPOSE 80
 
 # Start the Nginx server
