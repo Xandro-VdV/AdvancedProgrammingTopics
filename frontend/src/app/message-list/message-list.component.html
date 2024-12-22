@@ -1,71 +1,75 @@
-<div class="justify-center">
-    <div class="w-full max-w-4xl">
-        @for (message of this.messageList; track message.id) {
-        <app-message [message]="message"></app-message>
-        }
-    </div>
-    <div class="w-full max-w-4xl mt-8 bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
-        @if(isSubmitted && errorMessage) {
-            <div class="rounded p-4 mb-4 text-lg bg-red-200 text-red-800 border-2 border-red-300">
-                {{errorMessage}}
+<div class="flex justify-center">
+    <div class="w-full max-w-4xl flex">
+        <div class="w-1/2 mr-4">
+            <div class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
+                @if(isSubmitted && errorMessage) {
+                    <div class="rounded p-4 mb-4 text-lg bg-red-200 text-red-800 border-2 border-red-300">
+                        {{errorMessage}}
+                    </div>
+                }
+                <form (ngSubmit)="onSubmit()" #messageForm="ngForm">
+                    <div class="mb-4">
+                        <label class="block text-gray-700 text-sm font-bold mb-2" for="deviceId">
+                            deviceId
+                        </label>
+                        <input 
+                            class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" 
+                            id="deviceId" 
+                            type="text" 
+                            placeholder="Enter deviceId"
+                            [(ngModel)]="message.deviceId" 
+                            name="deviceId" 
+                            required>
+                    </div>
+                    <div class="mb-4">
+                        <label class="block text-gray-700 text-sm font-bold mb-2" for="header">
+                            Header
+                        </label>
+                        <input 
+                            class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" 
+                            id="header" 
+                            type="text" 
+                            placeholder="Enter header"
+                            [(ngModel)]="message.header" 
+                            name="header" 
+                            required>
+                    </div>
+                    <div class="mb-4">
+                        <label class="block text-gray-700 text-sm font-bold mb-2" for="message">
+                            Message
+                        </label>
+                        <textarea 
+                            class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" 
+                            id="message" 
+                            placeholder="Enter message"
+                            [(ngModel)]="message.message" 
+                            name="message" 
+                            required></textarea>
+                    </div>
+                    <div class="mb-4">
+                        <label class="block text-gray-700 text-sm font-bold mb-2" for="bearerToken">
+                            Bearer Token
+                        </label>
+                        <input 
+                            class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" 
+                            id="bearerToken" 
+                            type="text" 
+                            placeholder="Enter bearer token"
+                            [(ngModel)]="bearerToken" 
+                            name="bearerToken" 
+                            required>
+                    </div>
+                    <div class="flex justify-end">
+                        <button type="submit" [disabled]="!messageForm.form.valid || isSubmitted"
+                        class="text-white bg-blue-700 enabled:hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center disabled:opacity-75">Send</button>
+                    </div>
+                </form>
             </div>
-        }
-        <form (ngSubmit)="onSubmit()" #messageForm="ngForm">
-            <div class="mb-4">
-            <label class="block text-gray-700 text-sm font-bold mb-2" for="deviceId">
-                deviceId
-            </label>
-            <input 
-                class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" 
-                id="deviceId" 
-                type="text" 
-                placeholder="Enter deviceId"
-                [(ngModel)]="message.deviceId" 
-                name="deviceId" 
-                required>
-            </div>
-            <div class="mb-4">
-            <label class="block text-gray-700 text-sm font-bold mb-2" for="header">
-                Header
-            </label>
-            <input 
-                class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" 
-                id="header" 
-                type="text" 
-                placeholder="Enter header"
-                [(ngModel)]="message.header" 
-                name="header" 
-                required>
-            </div>
-            <div class="mb-4">
-            <label class="block text-gray-700 text-sm font-bold mb-2" for="message">
-                Message
-            </label>
-            <textarea 
-            class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" 
-            id="message" 
-            placeholder="Enter message"
-            [(ngModel)]="message.message" 
-            name="message" 
-            required></textarea>
-            </div>
-            <div class="mb-4">
-            <label class="block text-gray-700 text-sm font-bold mb-2" for="bearerToken">
-                Bearer Token
-            </label>
-            <input 
-            class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" 
-            id="bearerToken" 
-            type="text" 
-            placeholder="Enter bearer token"
-            [(ngModel)]="bearerToken" 
-            name="bearerToken" 
-            required>
-            </div>
-            <div class="flex justify-end">
-            <button type="submit" [disabled]="!messageForm.form.valid || isSubmitted"
-            class="text-white bg-blue-700 enabled:hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center disabled:opacity-75">Send</button>
-            </div>
-        </form>
+        </div>
+        <div class="w-1/2">
+            @for (message of this.messageList; track message.id) {
+                <app-message [message]="message"></app-message>
+            }
+        </div>
     </div>
 </div>

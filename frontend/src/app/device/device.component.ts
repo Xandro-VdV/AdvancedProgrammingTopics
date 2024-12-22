@@ -17,7 +17,7 @@ export class DeviceComponent {
   ngOnInit(): void {
   }
 
-  deleteDevice(id: string): void {
+  deleteDevice(id: number): void {
     this.deviceService.deleteDevice(id).subscribe(() => {
       console.log(`Device with id ${id} deleted`);
     });
